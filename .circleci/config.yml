@@ -11,7 +11,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Run tests
-          command: python -m unittest initial_explorations.py
+          command: python -m unittest unit_tests.py
 
 workflows:
   version: 2
