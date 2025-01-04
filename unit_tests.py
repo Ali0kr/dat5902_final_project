@@ -5,6 +5,7 @@ import os
 #Functions to be tested
 def checkInputFile():
     current_dir = os.getcwd()
+    print(current_dir)
     if os.path.exists(current_dir+'\\testcenterdata.xlsx'):
         return True
     else:
