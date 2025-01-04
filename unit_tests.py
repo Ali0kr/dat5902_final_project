@@ -4,8 +4,7 @@ import os
 
 #Functions to be tested
 def checkInputFile():
-    curr_dir = os.getcwd()
-    if curr_dir.exists("testcenterdata.xlsx"):
+    if os.getcwd.exists("testcenterdata.xlsx"):
         return True
     else:
         return False
