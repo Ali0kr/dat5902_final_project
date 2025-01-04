@@ -15,8 +15,7 @@ def checkInputFile():
 def checkFileSize():
     current_dir = os.getcwd()
     file_dir = current_dir+'/testcenterdata.xlsx'
-    print(os.stat(file_dir).st_size)
-    if os.stat(file_dir).st_size == 3958122:
+    if os.stat(file_dir).st_size == 3958123:
         return True
     else:
         return False
