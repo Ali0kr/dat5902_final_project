@@ -10,7 +10,11 @@ def readInData (fileName,sheet):
     data = pd.read_excel(file_dir,sheet) #Reads in the specified sheet index from the data file
     clean = data.iloc[12::9,[0,3,7,11]] #Takes only the totals from each location and only the male, female and total pass %s 
     clean.columns = ['Location','Male%','Female%','Total%']
+    clean = clean.drop(clean[clean['Male%'] == '..'].index)
+    clean = clean.drop(clean[clean['Female%'] == '..'].index)
+    clean = clean.drop(clean[clean['Total%'] == '..'].index)
     clean = clean.reset_index(drop=True) #Tidies up dataframe by correcting index values
+    clean = clean.astype({'Male%':'float','Female%':'float','Total%':'float'})
     return clean
 
 #Function to print max and min values for each column
@@ -21,7 +25,7 @@ def maxMinValues (df):
     minFemale = df[df['Female%']==df['Female%'].min()]
     maxTotal = df[df['Total%']==df['Total%'].max()]
     minTotal = df[df['Total%']==df['Total%'].min()]
-    print('Male Max:'+maxMale+'Male Min:'+minMale+'\nFemale Max:'+maxFemale+'Female Min:'+minFemale+'\nTotal Max:'+maxTotal+'Total Min:'+minTotal)
+    print('Male Max:\n'+str(maxMale)+'\nMale Min:\n'+str(minMale)+'\nFemale Max:\n'+str(maxFemale)+'\nFemale Min:\n'+str(minFemale)+'\nTotal Max:\n'+str(maxTotal)+'\nTotal Min:\n'+str(minTotal))
     return
 
 #Creating dataframes 
