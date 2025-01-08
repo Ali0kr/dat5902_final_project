@@ -34,4 +34,3 @@ y21 = readInData(fileName,6).copy(deep=True)
 y20 = readInData(fileName,7).copy(deep=True)
 
 #Checking max values for each
-y25[y25['Value']==y25['Value'].max()]
