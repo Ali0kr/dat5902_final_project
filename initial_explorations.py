@@ -13,6 +13,17 @@ def readInData (fileName,sheet):
     clean = clean.reset_index(drop=True) #Tidies up dataframe by correcting index values
     return clean
 
+#Function to print max and min values for each column
+def maxMinValues (df):
+    maxMale = df[df['Male%']==df['Male%'].max()]
+    minMale = df[df['Male%']==df['Male%'].min()]
+    maxFemale = df[df['Female%']==df['Female%'].max()]
+    minFemale = df[df['Female%']==df['Female%'].min()]
+    maxTotal = df[df['Total%']==df['Total%'].max()]
+    minTotal = df[df['Total%']==df['Total%'].min()]
+    print('Male Max:'+maxMale+'Male Min:'+minMale+'\nFemale Max:'+maxFemale+'Female Min:'+minFemale+'\nTotal Max:'+maxTotal+'Total Min:'+minTotal)
+    return
+
 #Creating dataframes 
 fileName = '/testcenterdata.xlsx'
 y25 = readInData(fileName,2).copy(deep=True)
@@ -22,3 +33,5 @@ y22 = readInData(fileName,5).copy(deep=True)
 y21 = readInData(fileName,6).copy(deep=True)
 y20 = readInData(fileName,7).copy(deep=True)
 
+#Checking max values for each
+y25[y25['Value']==y25['Value'].max()]
