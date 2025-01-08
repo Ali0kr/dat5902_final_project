@@ -18,7 +18,18 @@ def readInData (fileName,sheet):
     return clean
 
 #Function to print max and min values for each column
-def maxMinValues (df):
+def maxMinValuesPrint (df):
+    maxMale = df[df['Male%']==df['Male%'].max()]
+    minMale = df[df['Male%']==df['Male%'].min()]
+    maxFemale = df[df['Female%']==df['Female%'].max()]
+    minFemale = df[df['Female%']==df['Female%'].min()]
+    maxTotal = df[df['Total%']==df['Total%'].max()]
+    minTotal = df[df['Total%']==df['Total%'].min()]
+    print('Male Max:\n'+str(maxMale)+'\nMale Min:\n'+str(minMale)+'\nFemale Max:\n'+str(maxFemale)+'\nFemale Min:\n'+str(minFemale)+'\nTotal Max:\n'+str(maxTotal)+'\nTotal Min:\n'+str(minTotal))
+    return
+
+#Function to return max and min values for each column as a dataframe
+def maxMinValuesPrint (df):
     maxMale = df[df['Male%']==df['Male%'].max()]
     minMale = df[df['Male%']==df['Male%'].min()]
     maxFemale = df[df['Female%']==df['Female%'].max()]
@@ -38,9 +49,9 @@ y21 = readInData(fileName,6).copy(deep=True)
 y20 = readInData(fileName,7).copy(deep=True)
 
 #Checking max values for each
-maxMinValues(y25)
-maxMinValues(y24)
-maxMinValues(y23)
-maxMinValues(y22)
-maxMinValues(y21)
-maxMinValues(y20)
+maxMinValuesPrint(y25)
+maxMinValuesPrint(y24)
+maxMinValuesPrint(y23)
+maxMinValuesPrint(y22)
+maxMinValuesPrint(y21)
+maxMinValuesPrint(y20)
