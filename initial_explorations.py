@@ -28,7 +28,7 @@ def maxMinValues (df):
     print('Male Max:\n'+str(maxMale)+'\nMale Min:\n'+str(minMale)+'\nFemale Max:\n'+str(maxFemale)+'\nFemale Min:\n'+str(minFemale)+'\nTotal Max:\n'+str(maxTotal)+'\nTotal Min:\n'+str(minTotal))
     return
 
-#Creating dataframes 
+#Creating dataframes, dataframe name is based on final collection date, e.g. 2024-2025 is y25
 fileName = '/testcenterdata.xlsx'
 y25 = readInData(fileName,2).copy(deep=True)
 y24 = readInData(fileName,3).copy(deep=True)
@@ -38,3 +38,9 @@ y21 = readInData(fileName,6).copy(deep=True)
 y20 = readInData(fileName,7).copy(deep=True)
 
 #Checking max values for each
+maxMinValues(y25)
+maxMinValues(y24)
+maxMinValues(y23)
+maxMinValues(y22)
+maxMinValues(y21)
+maxMinValues(y20)
