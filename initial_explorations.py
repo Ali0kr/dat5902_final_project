@@ -12,5 +12,10 @@ def readInData (fileName,sheet):
 
 #Creating dataframes 
 fileName = '/testcenterdata.xlsx'
-y2425 = readInData(fileName,2).copy(deep=True)
-y2425.head()
+y25 = readInData(fileName,2).copy(deep=True)
+y24 = readInData(fileName,3).copy(deep=True)
+y23 = readInData(fileName,4).copy(deep=True)
+y22 = readInData(fileName,5).copy(deep=True)
+y21 = readInData(fileName,6).copy(deep=True)
+y20 = readInData(fileName,7).copy(deep=True)
+
