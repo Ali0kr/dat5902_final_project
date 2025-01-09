@@ -28,15 +28,18 @@ def maxMinValuesPrint (df):
     print('Male Max:\n'+str(maxMale)+'\nMale Min:\n'+str(minMale)+'\nFemale Max:\n'+str(maxFemale)+'\nFemale Min:\n'+str(minFemale)+'\nTotal Max:\n'+str(maxTotal)+'\nTotal Min:\n'+str(minTotal))
     return
 
-#Function to return max and min values for each column as a dataframe
-def maxMinValuesPrint (df):
+#Function to print max and min values for each column as a dataframe
+def maxMinValuesReturn (df):
     maxMale = df[df['Male%']==df['Male%'].max()]
     minMale = df[df['Male%']==df['Male%'].min()]
     maxFemale = df[df['Female%']==df['Female%'].max()]
     minFemale = df[df['Female%']==df['Female%'].min()]
     maxTotal = df[df['Total%']==df['Total%'].max()]
     minTotal = df[df['Total%']==df['Total%'].min()]
-    print('Male Max:\n'+str(maxMale)+'\nMale Min:\n'+str(minMale)+'\nFemale Max:\n'+str(maxFemale)+'\nFemale Min:\n'+str(minFemale)+'\nTotal Max:\n'+str(maxTotal)+'\nTotal Min:\n'+str(minTotal))
+    indexlabels = ['maxMale','minMale','maxFemale','minFemale','maxTotal','minTotal']
+    rdf = pd.concat([maxMale,minMale,maxFemale,minFemale,maxTotal,minTotal],axis=0)
+    rdf.index = indexlabels
+    print(rdf)
     return
 
 #Creating dataframes, dataframe name is based on final collection date, e.g. 2024-2025 is y25
