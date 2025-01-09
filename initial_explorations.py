@@ -47,6 +47,21 @@ y24 = readInData(fileName,3).copy(deep=True)
 y24c = maxMinValuesReturn(y24)
 print(y24c)
 
+#Creating Graphs
+#Creating first figure
+fig,ax = plt.subplots(figsize=(7,5))
+plt.xticks(rotation=45)
+index = np.arange(len(y24c['Total Conducted']))
+a = ax.bar(x=y24c.index, height=y24c['Female%'], align = 'center', label='Female %', color='r')
+ax.bar(x=index, height=y24c['Male%'], align = 'center', label='Male %',color='b')
+ax.set_title('Max and Min Pass % Locations', loc = 'left')
+ax.bar_label(container = a,labels = y24c['Location'])
+ax.set_ylabel('Pass %')
+fig.tight_layout()
+fig.legend()
+plt.savefig('fig1.png')
+
+
 #Deprecated functions - Functions I intended to use but no longer required or did not work
 #Function to get the geographical location of a month row that has a max or min value
 def getLocationNames (df,tofind):
