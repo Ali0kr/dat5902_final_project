@@ -70,8 +70,6 @@ cambridge = readInDataCambridge(fileName,3)
 
 #Processes data using maxMinValueReturn - returns a dataframe with the maximum and minimum pass % locations for males, females and overall
 y24c = maxMinValuesReturn(y24)
-print(cambridge)
-
 
 #Creating Graphs
 #Creating first figure - a barchart comparing the max and min pass %s of males, females and total included
@@ -103,15 +101,24 @@ def secondFig(bradford):
     plt.savefig('fig2.png')
     return
 
-#Creating third figure - Zooming in 
-def thirdFig():
+#Creating third figure - Zooming in on Cambridge
+def thirdFig(cambridge):
     fig,ax = plt.subplots(figsize=(7,7))
+    plt.xticks(rotation=45)
+    ax.plot(cambridge['Male%'], label = 'Male % Pass', color='b')
+    ax.plot(cambridge['Female%'], label = 'Female % Pass', color='r')
+    ax.set_ylabel('Pass %')
+    ax.set_xticks(ticks=cambridge.index,labels=cambridge['Date'])
+    ax.set_title('Cambridge 2023-2024')
+    fig.tight_layout()
+    fig.legend()
     plt.savefig('fig3.png')
     return
 
 #Calling functions
 firstFig(y24c)
 secondFig(bradford)
+thirdFig(cambridge)
 
 #Deprecated functions - Functions I intended to use but no longer required or did not work
 #Function to get the geographical location of a month row that has a max or min value
