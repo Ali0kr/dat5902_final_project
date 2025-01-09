@@ -39,8 +39,7 @@ def maxMinValuesReturn (df):
     indexlabels = ['maxMale','minMale','maxFemale','minFemale','maxTotal','minTotal']
     rdf = pd.concat([maxMale,minMale,maxFemale,minFemale,maxTotal,minTotal],axis=0)
     rdf.index = indexlabels
-    print(rdf)
-    return
+    return rdf
 
 #Creating dataframes, dataframe name is based on final collection date, e.g. 2024-2025 is y25
 fileName = '/testcenterdata.xlsx'
