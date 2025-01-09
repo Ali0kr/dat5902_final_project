@@ -31,6 +31,17 @@ def readInDataBradford (fileName,sheet):
     clean = clean.reset_index(drop=True) #Tidies up dataframe by correcting index values
     return clean
 
+#Function to read Cambridge in from excel file and sheet number
+def readInDataCambridge (fileName,sheet):
+    current_dir = os.getcwd()
+    file_dir = current_dir+fileName
+    data = pd.read_excel(file_dir,sheet) #Reads in the specified sheet index from the data file
+    clean = data.iloc[501:513,[0,1,2,3,5,6,7,9,10,11]] #Takes only the totals from each date and only the male, female and total pass %s
+    clean.columns = ['Date','Male Conducted','Male Passed','Male%','Female Conducted','Female Passed','Female%','Total Conducted','Total Passed','Total%']
+    clean = clean.astype({'Male Conducted':'float','Male Passed':'float','Male%':'float','Female Conducted':'float','Female Passed':'float','Female%':'float','Total Conducted':'float','Total Passed':'float','Total%':'float'})
+    clean = clean.reset_index(drop=True) #Tidies up dataframe by correcting index values
+    return clean
+
 #Function to print max and min values for each column for the months only as a dataframe
 def maxMinValuesReturn (df):
     maxMale = df[df['Male%']==df['Male%'].max()]
@@ -55,10 +66,11 @@ def maxMinValuesReturn (df):
 fileName = '/testcenterdata.xlsx'
 y24 = readInData(fileName,3).copy(deep=True) #24 refers to the final year of data collection, i.e. 2023-2024 dataset from April to March
 bradford = readInDataBradford(fileName,3)
+cambridge = readInDataCambridge(fileName,3)
 
 #Processes data using maxMinValueReturn - returns a dataframe with the maximum and minimum pass % locations for males, females and overall
 y24c = maxMinValuesReturn(y24)
-print(bradford)
+print(cambridge)
 
 
 #Creating Graphs
