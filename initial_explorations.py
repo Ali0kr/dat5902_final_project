@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+pd.options.mode.chained_assignment = None
 import numpy as np
 import os
 
@@ -28,17 +29,23 @@ def maxMinValuesPrint (df):
     print('Male Max:\n'+str(maxMale)+'\nMale Min:\n'+str(minMale)+'\nFemale Max:\n'+str(maxFemale)+'\nFemale Min:\n'+str(minFemale)+'\nTotal Max:\n'+str(maxTotal)+'\nTotal Min:\n'+str(minTotal))
     return
 
-#Function to print max and min values for each column as a dataframe
+#Function to return max and min values for each column as a dataframe
 def maxMinValuesReturn (df):
     maxMale = df[df['Male%']==df['Male%'].max()]
+    maxMale['Index'] = 'maxMale'
     minMale = df[df['Male%']==df['Male%'].min()]
+    minMale['Index'] = 'minMale'
     maxFemale = df[df['Female%']==df['Female%'].max()]
+    maxFemale['Index'] = 'maxFemale'
     minFemale = df[df['Female%']==df['Female%'].min()]
+    minFemale['Index'] = 'minFemale'
     maxTotal = df[df['Total%']==df['Total%'].max()]
+    maxTotal['Index'] = 'maxTotal'
     minTotal = df[df['Total%']==df['Total%'].min()]
-    indexlabels = ['maxMale','minMale','maxFemale','minFemale','maxTotal','minTotal']
+    minTotal['Index'] = 'minTotal'
     rdf = pd.concat([maxMale,minMale,maxFemale,minFemale,maxTotal,minTotal],axis=0)
-    rdf.index = indexlabels
+    rdf.set_index('Index', inplace = True)
+    rdf = rdf.rename_axis(None)
     return rdf
 
 #Creating dataframes, dataframe name is based on final collection date, e.g. 2024-2025 is y25
@@ -50,10 +57,19 @@ y22 = readInData(fileName,5).copy(deep=True)
 y21 = readInData(fileName,6).copy(deep=True)
 y20 = readInData(fileName,7).copy(deep=True)
 
-#Checking max values for each
-maxMinValuesPrint(y25)
-maxMinValuesPrint(y24)
-maxMinValuesPrint(y23)
-maxMinValuesPrint(y22)
-maxMinValuesPrint(y21)
-maxMinValuesPrint(y20)
+#Checking max values for each - remove comment to see raw data
+#maxMinValuesPrint(y25)
+#maxMinValuesPrint(y24)
+#maxMinValuesPrint(y23)
+#maxMinValuesPrint(y22)
+#maxMinValuesPrint(y21)
+#maxMinValuesPrint(y20)
+
+#Processes data using maxMinValueReturn - returns a dataframe with the maximum and minimum pass % locations for males, females and overall
+y25c = maxMinValuesReturn(y25)
+y24c = maxMinValuesReturn(y24)
+y23c = maxMinValuesReturn(y23)
+y22c = maxMinValuesReturn(y22)
+y21c = maxMinValuesReturn(y21)
+y20c = maxMinValuesReturn(y20)
+
