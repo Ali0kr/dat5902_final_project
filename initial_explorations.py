@@ -77,13 +77,23 @@ def firstFig(y24c):
     plt.savefig('fig1.png')
     return
 
+#Created first figure - Zooming in on bradford over the year
 def secondFig(bradford):
     fig,ax = plt.subplots(figsize=(7,7))
-    
+    plt.xticks(rotation=45)
+    ax.plot(bradford['Male%'], label = 'Male % Pass', color='b')
+    ax.plot(bradford['Female%'], label = 'Female % Pass', color='r')
+    ax.set_ylabel('Pass %')
+    ax.set_xticks(ticks=bradford.index,labels=bradford['Date'])
+    ax.set_title('Bradford 2023-2024')
+    fig.tight_layout()
+    fig.legend()
+    plt.savefig('fig2.png')
     return
 
 #Calling functions
 firstFig(y24c)
+secondFig(bradford)
 
 #Deprecated functions - Functions I intended to use but no longer required or did not work
 #Function to get the geographical location of a month row that has a max or min value
