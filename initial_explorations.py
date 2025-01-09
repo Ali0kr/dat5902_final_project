@@ -20,6 +20,20 @@ def readInData (fileName,sheet):
     clean['Location'] = clean['Location'].str.replace('Total', '')
     return clean
 
+#Function to read Bradford in from excel file and sheet number
+def readInDataBradford (fileName,sheet):
+    current_dir = os.getcwd()
+    file_dir = current_dir+fileName
+    data = pd.read_excel(file_dir,sheet) #Reads in the specified sheet index from the data file
+    clean = data.iloc[366:378,[0,1,2,3,5,6,7,9,10,11]] #Takes only the totals from each location and only the male, female and total pass %s
+    clean.columns = ['Date','Male Conducted','Male Passed','Male%','Female Conducted','Female Passed','Female%','Total Conducted','Total Passed','Total%']
+    clean = clean.drop(clean[clean['Male%'] == '..'].index)
+    clean = clean.drop(clean[clean['Female%'] == '..'].index)
+    clean = clean.drop(clean[clean['Total%'] == '..'].index)
+    clean = clean.astype({'Male Conducted':'float','Male Passed':'float','Male%':'float','Female Conducted':'float','Female Passed':'float','Female%':'float','Total Conducted':'float','Total Passed':'float','Total%':'float'})
+    clean = clean.reset_index(drop=True) #Tidies up dataframe by correcting index values
+    return clean
+
 #Function to print max and min values for each column for the months only as a dataframe
 def maxMinValuesReturn (df):
     maxMale = df[df['Male%']==df['Male%'].max()]
@@ -39,13 +53,16 @@ def maxMinValuesReturn (df):
     rdf = rdf.rename_axis(None)
     return rdf
 
-#Creating dataframes, dataframe name is based on final collection date, e.g. 2024-2025 is y25
+
+#Creating dataframes
 fileName = '/testcenterdata.xlsx'
-y24 = readInData(fileName,3).copy(deep=True)
+y24 = readInData(fileName,3).copy(deep=True) #24 refers to the final year of data collection, i.e. 2023-2024 dataset from April to March
+bradford = readInDataBradford(fileName,3)
 
 #Processes data using maxMinValueReturn - returns a dataframe with the maximum and minimum pass % locations for males, females and overall
 y24c = maxMinValuesReturn(y24)
-print(y24c)
+print(bradford)
+
 
 #Creating Graphs
 #Creating first figure - a barchart comparing the max and min pass %s of males, females and total included
@@ -61,6 +78,11 @@ def firstFig(y24c):
     fig.tight_layout()
     fig.legend()
     plt.savefig('fig1.png')
+    return
+
+def secondFig():
+    fig,ax = plt.subplots(figsize=(7,7))
+    
     return
 
 firstFig(y24c)
