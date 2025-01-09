@@ -48,7 +48,7 @@ y24c = maxMinValuesReturn(y24)
 print(y24c)
 
 #Creating Graphs
-#Creating first figure
+#Creating first figure - a barchart comparing the max and min pass %s of males, females and total included
 fig,ax = plt.subplots(figsize=(7,5))
 plt.xticks(rotation=45)
 index = np.arange(len(y24c['Total Conducted']))
