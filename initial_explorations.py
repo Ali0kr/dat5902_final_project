@@ -49,18 +49,21 @@ print(y24c)
 
 #Creating Graphs
 #Creating first figure - a barchart comparing the max and min pass %s of males, females and total included
-fig,ax = plt.subplots(figsize=(7,5))
-plt.xticks(rotation=45)
-index = np.arange(len(y24c['Total Conducted']))
-a = ax.bar(x=y24c.index, height=y24c['Female%'], align = 'center', label='Female %', color='r')
-ax.bar(x=index, height=y24c['Male%'], align = 'center', label='Male %',color='b')
-ax.set_title('Max and Min Pass % Locations', loc = 'left')
-ax.bar_label(container = a,labels = y24c['Location'])
-ax.set_ylabel('Pass %')
-fig.tight_layout()
-fig.legend()
-plt.savefig('fig1.png')
+def firstFig(y24c):
+    fig,ax = plt.subplots(figsize=(7,5))
+    plt.xticks(rotation=45)
+    index = np.arange(len(y24c['Total Conducted']))
+    a = ax.bar(x=y24c.index, height=y24c['Female%'], align = 'center', label='Female %', color='r')
+    ax.bar(x=index, height=y24c['Male%'], align = 'center', label='Male %',color='b')
+    ax.set_title('Max and Min Pass % Locations', loc = 'left')
+    ax.bar_label(container = a,labels = y24c['Location'])
+    ax.set_ylabel('Pass %')
+    fig.tight_layout()
+    fig.legend()
+    plt.savefig('fig1.png')
+    return
 
+firstFig(y24c)
 
 #Deprecated functions - Functions I intended to use but no longer required or did not work
 #Function to get the geographical location of a month row that has a max or min value
