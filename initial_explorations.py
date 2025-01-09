@@ -25,11 +25,8 @@ def readInDataBradford (fileName,sheet):
     current_dir = os.getcwd()
     file_dir = current_dir+fileName
     data = pd.read_excel(file_dir,sheet) #Reads in the specified sheet index from the data file
-    clean = data.iloc[366:378,[0,1,2,3,5,6,7,9,10,11]] #Takes only the totals from each location and only the male, female and total pass %s
+    clean = data.iloc[366:378,[0,1,2,3,5,6,7,9,10,11]] #Takes only the totals from each date and only the male, female and total pass %s
     clean.columns = ['Date','Male Conducted','Male Passed','Male%','Female Conducted','Female Passed','Female%','Total Conducted','Total Passed','Total%']
-    clean = clean.drop(clean[clean['Male%'] == '..'].index)
-    clean = clean.drop(clean[clean['Female%'] == '..'].index)
-    clean = clean.drop(clean[clean['Total%'] == '..'].index)
     clean = clean.astype({'Male Conducted':'float','Male Passed':'float','Male%':'float','Female Conducted':'float','Female Passed':'float','Female%':'float','Total Conducted':'float','Total Passed':'float','Total%':'float'})
     clean = clean.reset_index(drop=True) #Tidies up dataframe by correcting index values
     return clean
@@ -80,11 +77,12 @@ def firstFig(y24c):
     plt.savefig('fig1.png')
     return
 
-def secondFig():
+def secondFig(bradford):
     fig,ax = plt.subplots(figsize=(7,7))
     
     return
 
+#Calling functions
 firstFig(y24c)
 
 #Deprecated functions - Functions I intended to use but no longer required or did not work
