@@ -77,7 +77,7 @@ def firstFig(y24c):
     plt.savefig('fig1.png')
     return
 
-#Created first figure - Zooming in on bradford over the year
+#Creating second figure - Zooming in on bradford over the year
 def secondFig(bradford):
     fig,ax = plt.subplots(figsize=(7,7))
     plt.xticks(rotation=45)
@@ -89,6 +89,12 @@ def secondFig(bradford):
     fig.tight_layout()
     fig.legend()
     plt.savefig('fig2.png')
+    return
+
+#Creating third figure - Zooming in 
+def thirdFig():
+    fig,ax = plt.subplots(figsize=(7,7))
+    plt.savefig('fig3.png')
     return
 
 #Calling functions
